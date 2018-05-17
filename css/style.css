@@ -1,0 +1,177 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+nav{
+    background-color: #333;
+    color: #eeeeee;
+}
+
+.menu-trigger{
+    background: #000;
+    cursor: pointer;
+    padding: 1em;
+    display: block;
+    text-align: right;
+}
+
+#trigger{
+    display: none;
+}
+
+#trigger:checked ~ ul a {
+    /* breng de eigenschappen van het menu als het gechek is*/
+    font-size: 1em;
+    height: 1em;
+    line-height: 1em;
+    transform: scaley(1);
+    border-bottom: 1px solid #eee;
+}
+
+#trigger:checked ~  .menu-trigger .fa-times{
+    display: block;
+}
+
+#trigger:checked ~  .menu-trigger .fa-bars{
+    display: none;
+}
+
+
+
+/*het verberg da-times*/
+.fa-times{
+    display: none;
+}
+
+
+nav ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a{
+    display: block;
+    color: #eee;
+    text-decoration: none;
+    padding: 1em;
+    /*verberg het menu*/
+    border-bottom: 1px solid #eee;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    transform: scaley(0);
+    transition: all 0.7s ease-out;
+}
+
+nav a:hover{
+    color: #fff;
+    background: #000;
+}
+
+/*submenu verbergen*/
+#nav .submenu1 li a{
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    transform: scaleY(0);
+    border-bottom-width: 0;
+    transition: all .5s ease-out;
+}
+
+ /*het submenu tonen bij hover van .submenu1*/
+#nav .submenu1:hover li a{
+    font-size: 1em;
+    height: 1em ;
+    line-height: 1em;
+    transform: scaleY(1);
+    border-bottom-width: 1px;
+}
+
+
+.submenu1 > a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.submenu1 > a::after{
+    font-family: "Font Awesome\ 5 Free";
+    font-weight: 900;
+    content: "\f0d7";
+}
+
+.submenu1:hover > a::after{
+    content: "\f150";
+}
+
+.submenu1 ul{
+    padding-left: .5em;
+    border-left: 5px double #eee;
+
+}
+
+#validatie img {
+    height: 1em;
+    width: auto;
+    border: 0;
+    margin: 0 .3em;
+}
+
+main{
+    padding: 1em;
+}
+main img{
+    max-width: 100%;
+}
+footer{
+    padding: 1em;
+    background: #333;
+    color: #ddd;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+/*opmaak voor bredere viewport */
+@media screen and (min-width: 40em) {
+    nav>ul{
+     display: grid;
+     grid-template-columns: repeat(auto-fill,minmax(10em,1fr));
+    }
+    /*trigger label verwijderen*/
+    .menu-trigger{
+        display: none;
+    }
+
+    nav a{
+        font-size: 1em;
+        height: 1em;
+        line-height: 1em;
+        transform: scaley(1);
+    }
+
+    .submenu1 {
+        position: relative;
+    }
+
+    .submenu1 ul{
+        border-left: 0;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    .submenu1 a{
+        background: #333;
+       }
+
+    /*een lijntje links van de items van het hoofdmenu, behalve de eerste*/
+
+    nav>ul>li:not(:first-child)>a{
+        border-left: 10px solid#eee;
+    }
+
+}
